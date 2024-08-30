@@ -9,17 +9,18 @@
 
 <a href="2019/index.html">WebVR Stereo Slide Viewer (2019)</a><br />
 <a href="stereo-img/index.html">WebVR stereo-img example</a><br />
-<stereo-img src="images/wa_1964a_lr.jpg"></stereo-img>
 
-<stereo-img src="images/wa_1964a_lr.jpg" type="vr"></stereo-img>
 <button id="previous">Previous</button> <button id="next">Next</button> (or use left/right keyboard keys)
 
 <p>
-  <label for="examples">Or try these:</label>
+  <label for="examples">Select an image:</label>
   <select id="examples">
     <option value='{"src": "images/wa_1964a_lr.jpg", "type":"left-right"}'>  1964 stereo camera image a (Left-right)</option>
     <option value='{"src": "images/wa_1964b_lr.jpg", "type":"left-right"}'>  1964 stereo camera image b (Left-right)</option>
     <option value='{"src": "images/wa_1964c_lr.jpg", "type":"left-right"}'>  1964 stereo camera image c (Left-right)</option>
+    <option value='{"src": "images/wa_1964a_clean_lr.jpg", "type":"left-right"}'>  1964 stereo camera image a (cleaned-up, left-right)</option>
+    <option value='{"src": "images/wa_1964b_clean_lr.jpg", "type":"left-right"}'>  1964 stereo camera image b (cleaned-up, left-right)</option>
+    <option value='{"src": "images/wa_1964c_clean_lr.jpg", "type":"left-right"}'>  1964 stereo camera image c (cleaned-up, left-right)</option>
     <option value='{"src": "images/wa_1964a_lr.jpg", "type":"VR"}'>  1964 stereo camera image a (VR)</option>
     <option value='{"src": "images/wa_1964b_lr.jpg", "type":"VR"}'>  1964 stereo camera image b (VR)</option>
     <option value='{"src": "images/wa_1964c_lr.jpg", "type":"VR"}'>  1964 stereo camera image c (VR)</option>
@@ -29,6 +30,8 @@
       
   </select>
 </p>
+
+<stereo-img src="images/wa_1964a_lr.jpg" type="vr"></stereo-img>
 
 
  <script>
