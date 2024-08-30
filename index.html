@@ -11,18 +11,25 @@
 <a href="stereo-img/index.html">WebVR stereo-img example</a><br />
 <stereo-img src="images/wa_1964a_lr.jpg"></stereo-img>
 
- <p>
-      <label for="examples">Or try these:</label>
-      <select id="examples">
-        <option value='{"src": "images/wa_1964a_lr.jpg", "type":"left-right"}'>  1964 stereo camera image a</option>
-        <option value='{"src": "images/wa_1964b_lr.jpg", "type":"left-right"}'>  1964 stereo camera image b</option>
-        <option value='{"src": "images/wa_1964c_lr.jpg", "type":"left-right"}'>  1964 stereo camera image c</option>
-          
-      </select>
+<stereo-img src="images/wa_1964a_lr.jpg" type="vr"></stereo-img>
+<button id="previous">Previous</button> <button id="next">Next</button> (or use left/right keyboard keys)
+
+<p>
+  <label for="examples">Or try these:</label>
+  <select id="examples">
+    <option value='{"src": "images/wa_1964a_lr.jpg", "type":"left-right"}'>  1964 stereo camera image a (Left-right)</option>
+    <option value='{"src": "images/wa_1964b_lr.jpg", "type":"left-right"}'>  1964 stereo camera image b (Left-right)</option>
+    <option value='{"src": "images/wa_1964c_lr.jpg", "type":"left-right"}'>  1964 stereo camera image c (Left-right)</option>
+    <option value='{"src": "images/wa_1964a_lr.jpg", "type":"VR"}'>  1964 stereo camera image a (VR)</option>
+    <option value='{"src": "images/wa_1964b_lr.jpg", "type":"VR"}'>  1964 stereo camera image b (VR)</option>
+    <option value='{"src": "images/wa_1964c_lr.jpg", "type":"VR"}'>  1964 stereo camera image c (VR)</option>
+    <option value='{"src": "images/wa_1964a_lr.jpg", "type":"calf-left-right"}'>  1964 stereo camera image a (calf-left-right)</option>
+    <option value='{"src": "images/wa_1964b_lr.jpg", "type":"calf-left-right"}'>  1964 stereo camera image b (calf-left-right)</option>
+    <option value='{"src": "images/wa_1964c_lr.jpg", "type":"calf-left-right"}'>  1964 stereo camera image c (calf-left-right)</option>
+      
+  </select>
 </p>
 
-    <stereo-img src="images/wa_1964a_lr.jpg" type="vr"></stereo-img>
-    <button id="previous">Previous</button> <button id="next">Next</button> (or use left/right keyboard keys)
 
  <script>
     // On dropdown item selection, update <stereo-img>
