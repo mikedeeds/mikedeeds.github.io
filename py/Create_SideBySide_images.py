@@ -31,3 +31,6 @@ def merge_images(left_image_path, right_image_path, output_path):
 # Example usage
 
 merge_images('../2019/textures/L.jpg', '../2019/textures/R.jpg', '../images/LRimage.jpg')
+merge_images('../2019/textures/scan7_l.jpg', '../2019/textures/scan7_r.jpg', '../images/wa_1964a_lr.jpg')
+merge_images('../2019/textures/scan8_l.jpg', '../2019/textures/scan8_r.jpg', '../images/wa_1964b_lr.jpg')
+merge_images('../2019/textures/scan9_l.jpg', '../2019/textures/scan9_r.jpg', '../images/wa_1964c_lr.jpg')
