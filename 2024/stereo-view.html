@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stereo Image Viewer</title>
+    <style>
+        body { margin: 0; }
+        canvas { display: block; }
+        #controls { position: absolute; bottom: 10px; width: 100%; text-align: center; }
+        #distanceSlider { width: 300px; }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <input type="range" id="distanceSlider" min="1" max="100" value="50">
+        <label for="distanceSlider">Adjust Distance</label>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        let camera, scene, renderer, stereoEffect;
+        let leftMesh, rightMesh;
+
+        init();
+        animate();
+
+        function init() {
+            camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            camera.position.z = 5;
+
+            scene = new THREE.Scene();
+
+            const loader = new THREE.TextureLoader();
+            const texture = loader.load('../images/wa_1964a_aligned_lr.jpg', function(texture) {
+                const imageAspect = texture.image.width / texture.image.height;
+                const planeGeometry = new THREE.PlaneGeometry(1 * imageAspect, 1);
+
+                const leftMaterial = new THREE.MeshBasicMaterial({
+                    map: texture,
+                    side: THREE.DoubleSide
+                });
+                leftMaterial.map.repeat.set(0.5, 1);
+                leftMaterial.map.offset.set(0, 0);
+
+                const rightMaterial = new THREE.MeshBasicMaterial({
+                    map: texture,
+                    side: THREE.DoubleSide
+                });
+                rightMaterial.map.repeat.set(0.5, 1);
+                rightMaterial.map.offset.set(0.5, 0);
+
+                leftMesh = new THREE.Mesh(planeGeometry, leftMaterial);
+                rightMesh = new THREE.Mesh(planeGeometry, rightMaterial);
+
+                leftMesh.position.set(-0.5, 0, 0);
+                rightMesh.position.set(0.5, 0, 0);
+
+                scene.add(leftMesh);
+                scene.add(rightMesh);
+            });
+
+            renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            document.body.appendChild(renderer.domElement);
+
+            stereoEffect = new THREE.StereoEffect(renderer);
+            stereoEffect.setSize(window.innerWidth, window.innerHeight);
+
+            window.addEventListener('resize', onWindowResize, false);
+
+            const distanceSlider = document.getElementById('distanceSlider');
+            distanceSlider.addEventListener('input', function() {
+                const distance = this.value / 50;
+                camera.position.z = 5 * distance;
+            });
+        }
+
+        function onWindowResize() {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            stereoEffect.setSize(window.innerWidth, window.innerHeight);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            stereoEffect.render(scene, camera);
+        }
+    </script>
+</body>
+</html>
