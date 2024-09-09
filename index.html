@@ -8,93 +8,10 @@
 <h3>My grandfather took these photos in the 1960s with his stereoscopic camera.</h3>
 
 <a href="2019/index.html">WebXR Stereo Slide Viewer (2019)</a><br />
-<a href="2024/index.html">WebXR Stereo Slide Viewer (2024)</a><br />
+<a href="2024/stereo-view.html">WebXR Stereo Slide Viewer (2024)</a><br />
+<a href="2024/index.html">WebXR stereo-img Viewer (2024b)</a><br />
 <a href="stereo-img/index.html">WebXR stereo-img example</a><br />
 
-
-<p>
-  <label for="examples">Select an image:</label>
-  <select id="examples">
-    <option value='{"src": "images/wa_1964a_lr.jpg", "type":"left-right", "wiggle":"disabled"}'>  1964 stereo camera image a (Left-right)</option>
-    <option value='{"src": "images/wa_1964b_lr.jpg", "type":"left-right", "wiggle":"disabled"}'>  1964 stereo camera image b (Left-right)</option>
-    <option value='{"src": "images/wa_1964c_lr.jpg", "type":"left-right", "wiggle":"disabled"}'>  1964 stereo camera image c (Left-right)</option>
-    <option value='{"src": "images/wa_1964a_aligned_lr.jpg", "type":"left-right", "wiggle":"disabled"}'>  1964 stereo camera image a (aligned, left-right)</option>
-    <option value='{"src": "images/wa_1964b_aligned_lr.jpg", "type":"left-right", "wiggle":"disabled"}'>  1964 stereo camera image b (aligned, left-right)</option>
-    <option value='{"src": "images/wa_1964c_aligned_lr.jpg", "type":"left-right", "wiggle":"disabled"}'>  1964 stereo camera image c (aligned, left-right)</option>
-      
-  </select>
-</p>
-
-<stereo-img src="images/wa_1964a_lr.jpg" type="left-right", wiggle:"disabled"></stereo-img>
-<button id="previous">Previous</button> <button id="next">Next</button> (or use left/right keyboard keys)
-
-
- <script>
-    // On dropdown item selection, update <stereo-img>
-    const examples = document.getElementById('examples');
-    examples.addEventListener('change', (e) => {
-      const { src, type, angle } = JSON.parse(e.target.value);
-      const stereoImg = document.querySelector('stereo-img');
-      stereoImg.src = src;
-      stereoImg.type = type;
-      stereoImg.angle = angle;
-
-      const img = document.getElementById('img-ref');
-      img.src = src;
-    });
-
-    function previous() {
-      const index = examples.selectedIndex;
-      if (index > 0) {
-        examples.selectedIndex = index - 1;
-        examples.dispatchEvent(new Event('change'));
-      }
-    }
-
-    function next() {
-      const index = examples.selectedIndex;
-      if (index < examples.options.length - 1) {
-        examples.selectedIndex = index + 1;
-        examples.dispatchEvent(new Event('change'));
-      }
-    }
-
-    document.getElementById('previous').addEventListener('click', previous);
-    document.getElementById('next').addEventListener('click', next);
-
-    // listen for arrow keypress and go to previous / next option in dropdown examples
-    document.addEventListener('keydown', (e) => {
-      if (e.keyCode == 37 || e.keyCode === 38) {
-        previous();
-      } else if (e.keyCode == 39 || e.keyCode === 40) {
-        next();
-      }
-    });
-
-    // Add selected files to dropdown
-    function handleFiles(files) {
-      for (let i = 0; i < files.length; i++) {
-        let file = files[i];
-        
-        if (!file.type.startsWith('image/')){ continue }
-        
-        let reader = new FileReader();
-        reader.onload = e => { processFile(e.target.result, file.name); };
-        reader.readAsDataURL(file);
-      }
-    }
-
-    // Add a URL to the dropdown
-    function processFile(url, name) {
-      const newOption = document.createElement("option");
-      newOption.value = JSON.stringify({ src: url });
-      newOption.text = name;
-      examples.appendChild(newOption);
-      examples.selectedIndex = examples.options.length - 1;
-      examples.dispatchEvent(new Event('change'));
-    }
-
-  </script>
 
 </body>
 
